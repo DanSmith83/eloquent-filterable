@@ -1,7 +1,7 @@
 {
-  "name": "dansmith/filterable",
-  "description": "Filter scope for Laravel models",
-  "keywords": ["Filter", "Laravel", "Laravel5"],
+  "name": "dansmith/eloquent-filterable",
+  "description": "Filter scope for Eloquent models",
+  "keywords": ["Filter", "Laravel", "Laravel5", "Eloquent"],
   "license": "MIT",
   "authors": [
     {
