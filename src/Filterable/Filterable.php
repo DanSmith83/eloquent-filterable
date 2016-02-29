@@ -20,6 +20,10 @@ trait Filterable
             throw new FilterableException('Filterable attributes must be set');
         }
 
+        if (empty($parameters)) {
+            return $query;
+        }
+
         return $query->where($this->filterParameters($parameters));
     }
 
