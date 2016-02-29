@@ -2,7 +2,7 @@
 
 namespace DanSmith\Filterable;
 
-use Dansmith\Filterable\Exceptions\FilterableException;
+use DanSmith\Filterable\Exceptions\FilterableException;
 
 trait Filterable
 {

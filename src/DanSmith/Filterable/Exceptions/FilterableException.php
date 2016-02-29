@@ -1,5 +1,5 @@
 <?php
 
-namespace Dansmith\Filterable\Exceptions;
+namespace DanSmith\Filterable\Exceptions;
 
 class FilterableException extends \Exception {}
