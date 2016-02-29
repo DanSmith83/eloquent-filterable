@@ -3,6 +3,7 @@
 namespace DanSmith\Filterable;
 
 use DanSmith\Filterable\Exceptions\FilterableException;
+use Illuminate\Database\Eloquent\Builder;
 
 trait Filterable
 {
@@ -12,7 +13,7 @@ trait Filterable
      * @param array $parameters
      * @return mixed
      */
-    public function scopeFilter($query, $parameters = [])
+    public function scopeFilter(Builder $query, $parameters = [])
     {
         if (!$this->filterable) {
 
