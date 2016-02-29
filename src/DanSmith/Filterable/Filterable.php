@@ -2,6 +2,8 @@
 
 namespace DanSmith\Filterable;
 
+use Dansmith\Filterable\Exceptions\FilterableException;
+
 trait Filterable
 {
 
@@ -13,7 +15,8 @@ trait Filterable
     public function scopeFilter($query, $parameters = [])
     {
         if (!$this->filterable) {
-            return $query;
+
+            throw new FilterableException('Filterable attributes must be set');
         }
 
         return $query->where($this->filterParameters($parameters));
