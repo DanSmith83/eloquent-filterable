@@ -33,9 +33,14 @@ Specify the attributes you want to filter by (any values not specified here will
 ```php
 protected $filterable = ['category_id', 'created_by'];
 ```
-
 Run an Eloquent query with using your parameters
 
+```php
+$parameters = ['category_id' => 1, 'created_by' => 2];
+$pages = Page::filter($parameters)->orderBy('title', 'asc')->paginate();
+```
+
+Taking parameters directly from the URL
 ```php
 $pages = Page::filter($request->all())->orderBy('title', 'asc')->paginate();
 ```
