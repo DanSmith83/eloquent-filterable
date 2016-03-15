@@ -16,7 +16,6 @@ trait Filterable
     public function scopeFilter(Builder $query, $parameters = [])
     {
         if (!$this->filterable) {
-
             throw new FilterableException('Filterable attributes must be set');
         }
 
