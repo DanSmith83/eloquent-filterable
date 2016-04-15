@@ -33,6 +33,19 @@ Specify the attributes you want to filter by (any values not specified here will
 ```php
 protected $filterable = ['category_id', 'created_by'];
 ```
+
+Alternatively, if you want to provide more complex filters, you can override the getFilterable method.  This makes it possible to provide either a closure or a custom class.
+```php
+public function getFilterable()
+{
+    return [
+    	'category_id',
+    	'created_by',
+    	'starts_with' => function($query, $value) { return $query->where('title', 'LIKE', $value.'%'; }
+    ];
+}
+```
+
 Run an Eloquent query with using your parameters
 
 ```php
