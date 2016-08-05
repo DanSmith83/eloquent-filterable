@@ -40,7 +40,7 @@ trait Filterable
      */
     private function getWhereFilters($parameters)
     {
-        return array_only($parameters, array_filter($this->getFilterable(), function($v, $k) use ($parameters) {
+        return array_only($parameters, array_filter($this->getFilterable(), function ($v, $k) use ($parameters) {
             return is_numeric($k) && isset($parameters[$v]) && strlen($parameters[$v]) > 0;
         }, ARRAY_FILTER_USE_BOTH));
     }
@@ -63,7 +63,7 @@ trait Filterable
      */
     private function getCallableFilters($parameters)
     {
-        return array_filter($this->getFilterable(), function($v, $k) use ($parameters) {
+        return array_filter($this->getFilterable(), function ($v, $k) use ($parameters) {
             return is_callable($v) && isset($parameters[$k]) && strlen($parameters[$k]) > 0;
         }, ARRAY_FILTER_USE_BOTH);
     }
@@ -88,8 +88,8 @@ trait Filterable
      */
     private function getClassFilters($parameters)
     {
-        return array_filter($this->getFilterable(), function($v, $k) use ($parameters) {
-            return  is_string($v) &&
+        return array_filter($this->getFilterable(), function ($v, $k) use ($parameters) {
+            return is_string($v) &&
             class_exists($v) &&
             isset($parameters[$k]) &&
             strlen($parameters[$k]) > 0;
@@ -104,7 +104,7 @@ trait Filterable
     private function applyClassFilters(Builder $query, $parameters)
     {
         foreach ($this->getClassFilters($parameters) as $k => $class) {
-            $query = $this->applyClassFilter($query, new $class, $parameters[$k]);
+            $query = $this->applyClassFilter($query, $this->makeFilterClass($class), $parameters[$k]);
         }
 
         return $query;
@@ -135,5 +135,18 @@ trait Filterable
         $query = $this->applyClassFilters($query, $parameters);
 
         return $query;
+    }
+
+    /**
+     * @param $class
+     * @return mixed
+     */
+    private function makeFilterClass($class)
+    {
+        if (function_exists('app')) {
+            return app()->make($class);
+        }
+
+        return new $class;
     }
 }

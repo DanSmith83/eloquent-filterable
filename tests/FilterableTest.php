@@ -82,8 +82,10 @@ class Baz extends Model{
 
 class FooFilter implements \DanSmith\Filterable\Filter
 {
-    public function handle(Builder $query, $value)
+    private $value = 'test';
+
+    public function handle(Builder $query)
     {
-        return $query->where('foo', '=', $value);
+        return $query->where('foo', '=', $this->value);
     }
 }
