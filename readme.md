@@ -41,7 +41,7 @@ public function getFilterable()
     return [
     	'category_id',
     	'created_by',
-    	'starts_with' => function($query, $value) { return $query->where('title', 'LIKE', $value.'%'; }
+    	'starts_with' => function($query, $value) { return $query->where('title', 'LIKE', $value.'%'); }
     ];
 }
 ```
